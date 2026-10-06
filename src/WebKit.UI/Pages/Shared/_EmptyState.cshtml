@@ -1,0 +1,10 @@
+@model EmptyStateModel
+
+<section class="wk-card wk-empty" aria-labelledby="empty-title">
+    <h2 id="empty-title">@Model.Title</h2>
+    <p class="wk-muted">@Model.Description</p>
+    @if (!string.IsNullOrWhiteSpace(Model.ActionText) && !string.IsNullOrWhiteSpace(Model.ActionUrl))
+    {
+        <a class="wk-button wk-button-primary" href="@Model.ActionUrl">@Model.ActionText</a>
+    }
+</section>

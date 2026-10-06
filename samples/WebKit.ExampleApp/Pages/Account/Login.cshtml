@@ -1,0 +1,20 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<partial name="_PageHeader" model='new PageHeaderModel("Sign in", "A deliberately simple authentication simulation for the reference app.")' />
+<form class="wk-form" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div asp-validation-summary="ModelOnly" class="wk-validation" role="alert"></div>
+    <div class="wk-field">
+        <label asp-for="UserName">User name</label>
+        <input asp-for="UserName" autocomplete="username" />
+        <span asp-validation-for="UserName" class="wk-validation"></span>
+    </div>
+    <div class="wk-field">
+        <label><input asp-for="IsAdmin" /> Sign in as admin</label>
+    </div>
+    <div class="wk-actions"><button class="wk-button wk-button-primary" type="submit">Sign in</button></div>
+</form>

@@ -1,0 +1,30 @@
+@page "{id:guid?}"
+@model ProductEditModel
+@{
+    ViewData["Title"] = Model.IsEdit ? "Edit item" : "Create item";
+}
+
+<partial name="_PageHeader" model='new PageHeaderModel(ViewData["Title"]?.ToString() ?? "Edit item", "One form pattern: bind a draft, validate it, redirect after success.")' />
+<form class="wk-form" method="post">
+    <input type="hidden" asp-for="Input.Id" />
+    <div asp-validation-summary="ModelOnly" class="wk-validation" role="alert"></div>
+    <div class="wk-field">
+        <label asp-for="Input.Name"></label>
+        <input asp-for="Input.Name" autocomplete="off" />
+        <span asp-validation-for="Input.Name" class="wk-validation"></span>
+    </div>
+    <div class="wk-field">
+        <label asp-for="Input.Category"></label>
+        <input asp-for="Input.Category" autocomplete="off" />
+        <span asp-validation-for="Input.Category" class="wk-validation"></span>
+    </div>
+    <div class="wk-field">
+        <label asp-for="Input.Status"></label>
+        <select asp-for="Input.Status"><option>Active</option><option>Draft</option></select>
+        <span asp-validation-for="Input.Status" class="wk-validation"></span>
+    </div>
+    <div class="wk-actions">
+        <button class="wk-button wk-button-primary" type="submit">Save item</button>
+        <a class="wk-button" href="/Products">Cancel</a>
+    </div>
+</form>

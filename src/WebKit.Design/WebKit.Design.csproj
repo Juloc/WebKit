@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>WebKit.Design</AssemblyName>
+    <RootNamespace>WebKit.Design</RootNamespace>
+    <PackageId>WebKit.Design</PackageId>
+    <Version>0.1.0</Version>
+    <Description>Framework-neutral semantic design tokens for WebKit applications.</Description>
+  </PropertyGroup>
+</Project>

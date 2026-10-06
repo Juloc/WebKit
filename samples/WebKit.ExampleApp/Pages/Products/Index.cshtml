@@ -1,0 +1,48 @@
+@page
+@model ProductsIndexModel
+@{
+    ViewData["Title"] = "Catalog";
+}
+
+<partial name="_PageHeader" model='new PageHeaderModel("Catalog", "A paginated feature with search, empty state and detail navigation.")' />
+<div class="wk-actions" style="margin-top: -1rem; margin-bottom: var(--wk-space-5);">
+    <a class="wk-button wk-button-primary" href="/Products/Edit">Create item</a>
+</div>
+<form class="wk-card" method="get" role="search">
+    <div class="wk-field">
+        <label for="q">Search catalog</label>
+        <input id="q" name="q" value="@Model.Search" placeholder="Name or category" />
+    </div>
+    <div class="wk-actions" style="margin-top: var(--wk-space-3);">
+        <button class="wk-button wk-button-primary" type="submit">Search</button>
+        <a class="wk-button" href="/Products">Clear</a>
+    </div>
+</form>
+
+@if (Model.Results.Items.Count == 0)
+{
+    <div style="margin-top: var(--wk-space-5);"><partial name="_EmptyState" model='new EmptyStateModel("No items found", "Try a different search or create the first item.", "Create item", "/Products/Edit")' /></div>
+}
+else
+{
+    <div class="wk-card" style="margin-top: var(--wk-space-5);">
+        <div class="wk-table-wrap">
+            <table class="wk-table">
+                <caption class="wk-sr-only">Catalog items</caption>
+                <thead><tr><th>Name</th><th>Category</th><th>Status</th><th><span class="wk-sr-only">Actions</span></th></tr></thead>
+                <tbody>
+                @foreach (Product product in Model.Results.Items)
+                {
+                    <tr>
+                        <td><a href="/Products/Details/@product.Id">@product.Name</a></td>
+                        <td>@product.Category</td>
+                        <td><partial name="_StatusBadge" model='new StatusBadgeModel(product.Status, product.Status == "Active" ? "success" : "warning")' /></td>
+                        <td><a href="/Products/Edit/@product.Id">Edit</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+        <partial name="_Pagination" model="Model.Pagination" />
+    </div>
+}

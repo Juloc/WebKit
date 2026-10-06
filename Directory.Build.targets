@@ -1,0 +1,12 @@
+<Project>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <Target Name="WebKitArchitectureGuard" BeforeTargets="Build">
+    <ItemGroup>
+      <ForbiddenReferences Include="@(ReferencePath)" Condition="'%(Filename)' == 'MediatR' Or '%(Filename)' == 'Hangfire'" />
+    </ItemGroup>
+    <Error Condition="@(ForbiddenReferences) != ''" Text="WebKit intentionally has no MediatR or Hangfire dependency. Use the documented WebKit patterns instead." />
+  </Target>
+</Project>

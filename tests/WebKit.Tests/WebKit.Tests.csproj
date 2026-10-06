@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>WebKit.Tests</AssemblyName>
+    <RootNamespace>WebKit.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\samples\WebKit.ExampleApp\WebKit.ExampleApp.csproj" />
+  </ItemGroup>
+</Project>

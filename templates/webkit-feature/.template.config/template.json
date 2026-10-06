@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "WebKit",
+  "classifications": ["Web", "Feature"],
+  "identity": "WebKit.Templates.Feature",
+  "name": "WebKit feature module",
+  "shortName": "webkit-feature",
+  "sourceName": "WebKitFeature"
+}

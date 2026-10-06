@@ -1,0 +1,12 @@
+@model ConfirmDialogModel
+
+<dialog id="@Model.Id" class="wk-dialog" aria-labelledby="@Model.Id-title">
+    <div class="wk-dialog-body">
+        <h2 id="@Model.Id-title">@Model.Title</h2>
+        <p>@Model.Description</p>
+        <div class="wk-actions">
+            <button class="wk-button" type="button" data-dialog-close="@Model.Id">Cancel</button>
+            <button class="wk-button wk-button-danger" type="submit">@Model.ConfirmText</button>
+        </div>
+    </div>
+</dialog>

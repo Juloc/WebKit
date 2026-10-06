@@ -1,0 +1,12 @@
+@page
+@model AdminIndexModel
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<partial name="_PageHeader" model='new PageHeaderModel("Admin", "A server-side capability check protects this page.")' />
+<section class="wk-card">
+    <span class="wk-status wk-status-success">Capability: admin</span>
+    <h2>Permission state is explicit</h2>
+    <p class="wk-muted">Sign out and sign in again without the admin checkbox to see the forbidden state. Authorization is evaluated on the server, not hidden in the navigation.</p>
+</section>

@@ -1,0 +1,24 @@
+@model PaginationModel
+
+@if (Model.PageCount > 1)
+{
+    <nav class="wk-pagination" aria-label="Pagination">
+        @if (Model.HasPreviousPage)
+        {
+            <a class="wk-button" href="@Model.UrlFor(Model.Page - 1)">Previous</a>
+        }
+        else
+        {
+            <span></span>
+        }
+        <span class="wk-muted">Page @Model.Page of @Model.PageCount</span>
+        @if (Model.HasNextPage)
+        {
+            <a class="wk-button" href="@Model.UrlFor(Model.Page + 1)">Next</a>
+        }
+        else
+        {
+            <span></span>
+        }
+    </nav>
+}

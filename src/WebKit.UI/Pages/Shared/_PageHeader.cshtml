@@ -1,0 +1,11 @@
+@model PageHeaderModel
+
+<header class="wk-page-header">
+    <div>
+        <h1>@Model.Title</h1>
+        @if (!string.IsNullOrWhiteSpace(Model.Description))
+        {
+            <p>@Model.Description</p>
+        }
+    </div>
+</header>

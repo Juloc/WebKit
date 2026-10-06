@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "WebKit",
+  "classifications": ["Web", "Razor Pages", "Admin"],
+  "identity": "WebKit.Templates.AdminPage",
+  "name": "WebKit authorized admin Razor page",
+  "shortName": "webkit-admin-page",
+  "sourceName": "WebKitAdminPage"
+}

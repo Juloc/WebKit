@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>WebKit.Core</AssemblyName>
+    <RootNamespace>WebKit.Core</RootNamespace>
+    <PackageId>WebKit.Core</PackageId>
+    <Version>0.1.0</Version>
+    <Description>Small UI-independent primitives for WebKit applications.</Description>
+  </PropertyGroup>
+</Project>

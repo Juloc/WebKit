@@ -1,0 +1,30 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <div class="hero-copy">
+        <span class="wk-status wk-status-success">Reference implementation</span>
+        <h1>Build calm, consistent Razor apps.</h1>
+        <p class="wk-muted">WebKit keeps the recurring decisions small: one feature registration boundary, one list pattern, one state vocabulary and accessible defaults from the first page.</p>
+        <div class="wk-actions">
+            <a class="wk-button wk-button-primary" href="/Products">Open catalog</a>
+            <a class="wk-button" href="/Admin">Try admin page</a>
+        </div>
+    </div>
+    <div class="wk-card hero-card">
+        <div>
+            <p class="wk-muted" style="color: white; opacity: .82;">What this proves</p>
+            <h2>Server-rendered first</h2>
+            <p>Progressive enhancement adds theme switching and native dialogs without turning Razor into a client-side framework.</p>
+        </div>
+    </div>
+</section>
+
+<section class="wk-grid wk-grid-3 metric-grid" aria-label="Example metrics">
+    <div class="wk-card"><span class="wk-muted">Components</span><div class="wk-stat">9</div></div>
+    <div class="wk-card"><span class="wk-muted">Client JS</span><div class="wk-stat">2 KB</div></div>
+    <div class="wk-card"><span class="wk-muted">Framework deps</span><div class="wk-stat">0</div></div>
+</section>

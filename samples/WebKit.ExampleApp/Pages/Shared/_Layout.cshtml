@@ -1,0 +1,55 @@
+@using WebKit.Web.Notifications
+@inject IUserContext UserContext
+@inject IFlashMessageStore FlashMessages
+@{
+    IReadOnlyList<FlashMessage> messages = FlashMessages.Read();
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - WebKit Example</title>
+    <link rel="stylesheet" href="/_content/WebKit.Design/css/webkit-design.css" />
+    <link rel="stylesheet" href="/_content/WebKit.UI/css/webkit-ui.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="wk-shell">
+        <aside class="wk-sidebar">
+            <a class="wk-brand" href="/"><span class="wk-brand-mark" aria-hidden="true">W</span> WebKit</a>
+            <nav class="wk-nav" aria-label="Primary navigation">
+                <a href="/" aria-current="@(Context.Request.Path == "/" ? "page" : null)">Home</a>
+                <a href="/Products" aria-current="@(Context.Request.Path.StartsWithSegments("/Products") ? "page" : null)">Catalog</a>
+                @if (UserContext.HasCapability("admin"))
+                {
+                    <a href="/Admin">Admin</a>
+                }
+            </nav>
+        </aside>
+        <div class="wk-main">
+            <header class="wk-header">
+                <span class="wk-muted">A small server-rendered reference app</span>
+                <div class="wk-user-menu">
+                    <button class="wk-button" type="button" data-theme-value="system">System</button>
+                    <button class="wk-button" type="button" data-theme-value="light">Light</button>
+                    <button class="wk-button" type="button" data-theme-value="dark">Dark</button>
+                    @if (UserContext.IsAuthenticated)
+                    {
+                        <span>@UserContext.DisplayName</span>
+                        <form method="post" action="/Account/Logout"><button class="wk-button" type="submit">Sign out</button></form>
+                    }
+                    else
+                    {
+                        <a class="wk-button" href="/Account/Login">Sign in</a>
+                    }
+                </div>
+            </header>
+            <main class="wk-content">@RenderBody()</main>
+        </div>
+    </div>
+    <partial name="_Toasts" model="new ToastModel(messages.Select(message => message.Text).ToArray())" />
+    <script src="/_content/WebKit.UI/js/webkit-ui.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
