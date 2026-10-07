@@ -5,6 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\WebKit.Web\WebKit.Web.csproj" />
+    <PackageReference Include="Juloc.WebKit.Web" Version="0.2.0" />
+    <PackageReference Include="Juloc.WebKit.UI" Version="0.2.0" />
+    <PackageReference Include="Juloc.WebKit.Design" Version="0.2.0" />
   </ItemGroup>
 </Project>

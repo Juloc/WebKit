@@ -1,0 +1,22 @@
+@model BreadcrumbsModel
+
+@if (Model.Items.Count > 0)
+{
+    <nav class="wk-breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+        @foreach (BreadcrumbItemModel item in Model.Items)
+        {
+            <li>
+                @if (!string.IsNullOrWhiteSpace(item.Url))
+                {
+                    <a href="@item.Url">@item.Text</a>
+                }
+                else
+                {
+                    <span aria-current="page">@item.Text</span>
+                }
+            </li>
+        }
+        </ol>
+    </nav>
+}

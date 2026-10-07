@@ -1,0 +1,12 @@
+@model SettingsSectionModel
+
+<section class="wk-card wk-settings-section" aria-labelledby="@Model.Id-heading">
+    <h2 id="@Model.Id-heading">@Model.Heading</h2>
+    <p class="wk-muted">@Model.Explanation</p>
+    <dl class="wk-facts-list">
+        @foreach (SettingsItemModel item in Model.Items)
+        {
+            <div><dt><strong>@item.Label</strong><br /><span class="wk-muted">@item.Description</span></dt><dd>@item.Value</dd></div>
+        }
+    </dl>
+</section>

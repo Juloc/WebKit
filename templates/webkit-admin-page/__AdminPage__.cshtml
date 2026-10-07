@@ -1,0 +1,14 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using WebKit.UI
+@model __AdminPage__.__AdminPage__Model
+@attribute [Authorize(Policy = "admin")]
+@{
+    BreadcrumbsModel breadcrumbs = new([new BreadcrumbItemModel("Admin", "/Admin"), new BreadcrumbItemModel("__AdminPage__")]);
+    PageHeaderModel header = new("__AdminPage__", "This page is protected by the consumer's admin policy.");
+}
+<partial name="_Breadcrumbs" model="breadcrumbs" />
+<partial name="_PageHeader" model="header" />
+<section class="wk-card">
+    <p>Replace this with the administrative feature.</p>
+</section>

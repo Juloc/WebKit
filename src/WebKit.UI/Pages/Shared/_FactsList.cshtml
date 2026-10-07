@@ -1,0 +1,8 @@
+@model FactsListModel
+
+<dl class="wk-facts-list">
+    @foreach ((string label, string value) in Model.Items)
+    {
+        <div><dt>@label</dt><dd>@value</dd></div>
+    }
+</dl>

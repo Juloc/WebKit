@@ -1,0 +1,15 @@
+@model NavigationModel
+
+<nav class="wk-nav" aria-label="Primary navigation">
+    @foreach (NavigationGroupModel group in Model.Groups)
+    {
+        @if (!string.IsNullOrWhiteSpace(group.Label))
+        {
+            <h2 class="wk-nav-heading">@group.Label</h2>
+        }
+        @foreach (NavigationItemModel item in group.Items)
+        {
+            <a href="@item.Url" aria-current="@(item.IsCurrent ? "page" : null)">@item.Text</a>
+        }
+    }
+</nav>

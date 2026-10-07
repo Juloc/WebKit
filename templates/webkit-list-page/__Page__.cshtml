@@ -1,0 +1,26 @@
+@page
+@using WebKit.UI
+@model __Page__.__Page__Model
+@{
+    BreadcrumbsModel breadcrumbs = new([new BreadcrumbItemModel("Home", "/"), new BreadcrumbItemModel("__Page__")]);
+    PageHeaderModel header = new("__Page__", "Replace this description and connect the feature service.", "Create", "./Edit");
+    EmptyStateModel empty = new("No results", "Connect the feature query and provide an action when appropriate.");
+}
+<partial name="_Breadcrumbs" model="breadcrumbs" />
+<partial name="_PageHeader" model="header" />
+<form class="wk-card wk-toolbar" method="get" role="search">
+    <div class="wk-field">
+        <label for="search">Search</label>
+        <input id="search" name="q" value="@Model.Search" />
+    </div>
+    <div class="wk-actions"><button class="wk-button wk-button-primary" type="submit">Search</button></div>
+</form>
+@if (Model.HasResults)
+{
+    <section class="wk-card" aria-label="Results"><div class="wk-results-placeholder">Replace with the feature result list.</div></section>
+}
+else
+{
+    <partial name="_EmptyState" model="empty" />
+}
+<partial name="_Pagination" model="Model.Pagination" />

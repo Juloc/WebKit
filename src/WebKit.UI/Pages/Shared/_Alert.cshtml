@@ -1,0 +1,3 @@
+@model AlertModel
+
+<div class="wk-alert wk-alert-@Model.Tone.ToString().ToLowerInvariant()" role="@(Model.Tone == AlertTone.Error ? "alert" : "status")">@Model.Text</div>

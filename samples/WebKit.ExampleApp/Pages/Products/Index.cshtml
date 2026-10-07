@@ -4,9 +4,10 @@
     ViewData["Title"] = "Catalog";
 }
 
-<partial name="_PageHeader" model='new PageHeaderModel("Catalog", "A paginated feature with search, empty state and detail navigation.")' />
+<partial name="_Breadcrumbs" model='new BreadcrumbsModel([new BreadcrumbItemModel("Home", "/"), new BreadcrumbItemModel("Catalog")])' />
+<partial name="_PageHeader" model='new PageHeaderModel("Catalog", "A paginated feature with search, empty state and detail navigation.", "Create item", "/Products/Edit")' />
 <div class="wk-actions" style="margin-top: -1rem; margin-bottom: var(--wk-space-5);">
-    <a class="wk-button wk-button-primary" href="/Products/Edit">Create item</a>
+    <span class="wk-muted">Search, filter and paginate without losing the current query.</span>
 </div>
 <form class="wk-card" method="get" role="search">
     <div class="wk-field">
@@ -36,7 +37,7 @@ else
                     <tr>
                         <td><a href="/Products/Details/@product.Id">@product.Name</a></td>
                         <td>@product.Category</td>
-                        <td><partial name="_StatusBadge" model='new StatusBadgeModel(product.Status, product.Status == "Active" ? "success" : "warning")' /></td>
+                        <td><partial name="_StatusBadge" model='new StatusBadgeModel(product.Status, product.Status == "Active" ? StatusTone.Success : StatusTone.Warning)' /></td>
                         <td><a href="/Products/Edit/@product.Id">Edit</a></td>
                     </tr>
                 }

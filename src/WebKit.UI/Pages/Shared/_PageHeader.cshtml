@@ -8,4 +8,8 @@
             <p>@Model.Description</p>
         }
     </div>
+    @if (!string.IsNullOrWhiteSpace(Model.ActionText) && !string.IsNullOrWhiteSpace(Model.ActionUrl))
+    {
+        <a class="wk-button wk-button-primary" href="@Model.ActionUrl">@Model.ActionText</a>
+    }
 </header>

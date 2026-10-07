@@ -1,0 +1,12 @@
+@page
+@using WebKit.UI
+@model __Page__.__Page__Model
+@{
+    BreadcrumbsModel breadcrumbs = new([new BreadcrumbItemModel("Home", "/"), new BreadcrumbItemModel("__Page__")]);
+    PageHeaderModel header = new("__Page__", "Replace this description with the feature context.");
+}
+<partial name="_Breadcrumbs" model="breadcrumbs" />
+<partial name="_PageHeader" model="header" />
+<section class="wk-card">
+    <p>Replace this page with the feature's domain behavior.</p>
+</section>

@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "WebKit",
+  "classifications": ["Web", "Razor Pages", "Settings"],
+  "identity": "WebKit.Templates.SettingsPage",
+  "name": "WebKit settings page",
+  "shortName": "webkit-settings-page",
+  "sourceName": "__Page__"
+}

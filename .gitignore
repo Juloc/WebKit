@@ -1,6 +1,11 @@
 bin/
 obj/
 .dotnet-cli/
+artifacts/
+package-check/
+.template-cli/
+debug-app/
+debug-external/
 .vs/
 *.user
 *.suo

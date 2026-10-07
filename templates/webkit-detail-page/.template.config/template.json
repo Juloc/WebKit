@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "WebKit",
+  "classifications": ["Web", "Razor Pages", "Detail"],
+  "identity": "WebKit.Templates.DetailPage",
+  "name": "WebKit detail page",
+  "shortName": "webkit-detail-page",
+  "sourceName": "__Page__"
+}

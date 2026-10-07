@@ -1,0 +1,26 @@
+@page
+@model WebKit.ExampleApp.Pages.Settings.IndexModel
+@using WebKit.UI
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<partial name="_Breadcrumbs" model='new BreadcrumbsModel([new BreadcrumbItemModel("Home", "/"), new BreadcrumbItemModel("Settings")])' />
+<partial name="_PageHeader" model='new PageHeaderModel("Settings", "A settings page uses explained sections and typed save feedback.")' />
+<form class="wk-form" method="post">
+    <partial name="_ValidationSummary" />
+    <partial name="_SettingsSection" model='new SettingsSectionModel("appearance", "Appearance", "Choose the default density for this example.", [new SettingsItemModel("Theme", "Use the shell controls to preview themes.", "Light / Dark / System")])' />
+    <section class="wk-card wk-form-section" aria-labelledby="density-heading">
+        <h2 id="density-heading">Display</h2>
+        <div class="wk-field">
+            <label asp-for="Density">Density</label>
+            <select asp-for="Density">
+                <option>Comfortable</option>
+                <option>Compact</option>
+            </select>
+            <span class="wk-muted">This is intentionally a consumer-owned setting.</span>
+            <span asp-validation-for="Density" class="wk-validation"></span>
+        </div>
+    </section>
+    <div class="wk-actions"><button class="wk-button wk-button-primary" type="submit">Save settings</button></div>
+</form>

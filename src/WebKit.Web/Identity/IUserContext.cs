@@ -14,7 +14,7 @@ public interface IUserContext
     bool HasCapability(string capability);
 }
 
-public sealed class HttpUserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
+public sealed class HttpUserContext(IHttpContextAccessor httpContextAccessor, ICapabilityEvaluator capabilityEvaluator) : IUserContext
 {
     private ClaimsPrincipal User => httpContextAccessor.HttpContext?.User ?? new ClaimsPrincipal(new ClaimsIdentity());
 
@@ -24,5 +24,5 @@ public sealed class HttpUserContext(IHttpContextAccessor httpContextAccessor) : 
 
     public string? DisplayName => User.Identity?.Name;
 
-    public bool HasCapability(string capability) => User.IsInRole(capability) || User.Claims.Any(claim => claim.Type == "capability" && string.Equals(claim.Value, capability, StringComparison.OrdinalIgnoreCase));
+    public bool HasCapability(string capability) => capabilityEvaluator.HasCapability(User, capability);
 }

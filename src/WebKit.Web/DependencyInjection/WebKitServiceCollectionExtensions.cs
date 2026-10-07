@@ -24,6 +24,7 @@ public static class WebKitServiceCollectionExtensions
         services.AddHttpContextAccessor();
         services.AddProblemDetails();
         services.TryAddSingleton<IClock, SystemClock>();
+        services.TryAddSingleton<ICapabilityEvaluator, DefaultCapabilityEvaluator>();
         services.TryAddScoped<IUserContext, HttpUserContext>();
         services.TryAddScoped<IFlashMessageStore, TempDataFlashMessageStore>();
         services.AddSingleton<IAuthorizationHandler, CapabilityAuthorizationHandler>();

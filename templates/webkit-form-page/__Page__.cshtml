@@ -1,0 +1,21 @@
+@page
+@using WebKit.UI
+@model __Page__.__Page__Model
+@{
+    BreadcrumbsModel breadcrumbs = new([new BreadcrumbItemModel("Home", "/"), new BreadcrumbItemModel("__Page__")]);
+    PageHeaderModel header = new("__Page__", "Replace this description with the form context.");
+}
+<partial name="_Breadcrumbs" model="breadcrumbs" />
+<partial name="_PageHeader" model="header" />
+<form class="wk-form" method="post">
+    <div asp-validation-summary="ModelOnly" class="wk-validation" role="alert"></div>
+    <section class="wk-card wk-form-section" aria-labelledby="form-section-title">
+        <h2 id="form-section-title">Details</h2>
+        <p class="wk-muted">Add domain fields here. Keep labels, hints and validation next to each control.</p>
+        <!-- Add feature form fields here. -->
+    </section>
+    <div class="wk-actions">
+        <button class="wk-button wk-button-primary" type="submit">Save</button>
+        <a class="wk-button" href="./__Page__">Cancel</a>
+    </div>
+</form>

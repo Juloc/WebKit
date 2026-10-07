@@ -4,10 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WebKit application</title>
+    <link rel="stylesheet" href="~/_content/Juloc.WebKit.Design/css/webkit-design.css" />
+    <link rel="stylesheet" href="~/_content/Juloc.WebKit.UI/css/webkit-ui.css" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
-<body>
-    <main>
+<body class="wk-shell">
+    <header class="wk-header">
+        <strong>WebKit application</strong>
+        <div class="wk-actions" aria-label="Theme">
+            <button class="wk-button" type="button" data-theme-value="system">System</button>
+            <button class="wk-button" type="button" data-theme-value="light">Light</button>
+            <button class="wk-button" type="button" data-theme-value="dark">Dark</button>
+        </div>
+    </header>
+    <main class="wk-content">
         @RenderBody()
     </main>
+    <script src="~/_content/Juloc.WebKit.UI/js/webkit-ui.js" defer></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

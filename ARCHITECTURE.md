@@ -2,7 +2,7 @@
 
 ## Leitlinien
 
-WebKit ist ein Application-Kit, kein vollständiges Framework und kein Ersatz für die Domänenlogik einer Anwendung. Die Oberfläche soll mit Razor Pages direkt lesbar bleiben. Abstraktionen werden nur eingeführt, wenn sie in mindestens zwei Features denselben Vertrag stabilisieren.
+WebKit ist ein Application-Kit, kein vollständiges Framework und kein Ersatz für die Domänenlogik einer Anwendung. Die Oberfläche soll mit Razor Pages direkt lesbar bleiben. Abstraktionen werden nur eingeführt, wenn sie in mindestens zwei Features denselben Vertrag stabilisieren. Die kanonische Seiten-Grammatik ist in [PAGE_PATTERNS.md](PAGE_PATTERNS.md) beschrieben.
 
 ## Abhängigkeiten
 
@@ -13,8 +13,8 @@ WebKit.Web           (ASP.NET Core Integration)
       ↑
 WebKit.ExampleApp    (Feature- und Page-Code)
 
-WebKit.Design  ──────> CSS-Assets
-WebKit.UI      ──────> Razor-Partials und UI-Assets
+WebKit.Design  ──────> CSS-Assets als Razor Class Library
+WebKit.UI      ──────> Razor-Partials und UI-Assets als Razor Class Library
 ```
 
 `WebKit.Core` enthält nur portable Anwendungsbausteine. `WebKit.Web` kennt ASP.NET Core, aber keine konkrete Domäne. Die Anwendung entscheidet über Datenzugriff, Feature-Reihenfolge und Authentifizierungsschema.
@@ -26,7 +26,7 @@ Die minimale Reihenfolge ist:
 1. `AddRazorPages()` registriert die Seiten.
 2. `AddWebKitWeb()` registriert Clock, User Context, Flash-Message-Store, Problem Details und Capability-Handler.
 3. `AddWebKitFeatures(...)` registriert die vertikalen Feature-Module.
-4. Die Anwendung richtet ihr Authentifizierungsschema und ihre Policies ein.
+4. Die Anwendung richtet ihr Authentifizierungsschema und ihre Policies ein; Capability-Sichtbarkeit und serverseitige Autorisierung verwenden denselben `ICapabilityEvaluator`.
 5. Die Pipeline verwendet Static Files, Routing, Authentication, Authorization und `MapRazorPages()`.
 
 Feature-Module sind mit `IWebKitFeature` absichtlich klein:

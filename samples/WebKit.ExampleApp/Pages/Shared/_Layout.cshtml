@@ -3,6 +3,16 @@
 @inject IFlashMessageStore FlashMessages
 @{
     IReadOnlyList<FlashMessage> messages = FlashMessages.Read();
+    var toasts = messages.Select(message => new ToastMessageModel(
+        message.Text,
+        message.Kind switch
+        {
+            FlashMessageKind.Success => ToastKind.Success,
+            FlashMessageKind.Warning => ToastKind.Warning,
+            FlashMessageKind.Error => ToastKind.Error,
+            _ => ToastKind.Information
+        },
+        message.Kind == FlashMessageKind.Error)).ToArray();
 }
 <!doctype html>
 <html lang="en">
@@ -10,9 +20,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] - WebKit Example</title>
-    <link rel="stylesheet" href="/_content/WebKit.Design/css/webkit-design.css" />
-    <link rel="stylesheet" href="/_content/WebKit.UI/css/webkit-ui.css" />
+    <link rel="stylesheet" href="/_content/Juloc.WebKit.Design/css/webkit-design.css" />
+    <link rel="stylesheet" href="/_content/Juloc.WebKit.UI/css/webkit-ui.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <div class="wk-shell">
@@ -21,6 +32,10 @@
             <nav class="wk-nav" aria-label="Primary navigation">
                 <a href="/" aria-current="@(Context.Request.Path == "/" ? "page" : null)">Home</a>
                 <a href="/Products" aria-current="@(Context.Request.Path.StartsWithSegments("/Products") ? "page" : null)">Catalog</a>
+                @if (UserContext.IsAuthenticated)
+                {
+                    <a href="/Settings" aria-current="@(Context.Request.Path.StartsWithSegments("/Settings") ? "page" : null)">Settings</a>
+                }
                 @if (UserContext.HasCapability("admin"))
                 {
                     <a href="/Admin">Admin</a>
@@ -31,9 +46,12 @@
             <header class="wk-header">
                 <span class="wk-muted">A small server-rendered reference app</span>
                 <div class="wk-user-menu">
-                    <button class="wk-button" type="button" data-theme-value="system">System</button>
-                    <button class="wk-button" type="button" data-theme-value="light">Light</button>
-                    <button class="wk-button" type="button" data-theme-value="dark">Dark</button>
+                    <partial name="_ThemeControl" />
+                    <div class="wk-theme-presets" aria-label="Theme presets">
+                        <button class="wk-button" type="button" data-theme-preset="media">Media</button>
+                        <button class="wk-button" type="button" data-theme-preset="finance">Finance</button>
+                        <button class="wk-button" type="button" data-theme-preset="document">Document</button>
+                    </div>
                     @if (UserContext.IsAuthenticated)
                     {
                         <span>@UserContext.DisplayName</span>
@@ -48,8 +66,8 @@
             <main class="wk-content">@RenderBody()</main>
         </div>
     </div>
-    <partial name="_Toasts" model="new ToastModel(messages.Select(message => message.Text).ToArray())" />
-    <script src="/_content/WebKit.UI/js/webkit-ui.js"></script>
+    <partial name="_Toasts" model="new ToastModel(toasts)" />
+    <script src="/_content/Juloc.WebKit.UI/js/webkit-ui.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

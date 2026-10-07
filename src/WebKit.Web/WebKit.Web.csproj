@@ -4,9 +4,8 @@
     <OutputType>Library</OutputType>
     <AssemblyName>WebKit.Web</AssemblyName>
     <RootNamespace>WebKit.Web</RootNamespace>
-    <PackageId>WebKit.Web</PackageId>
+    <PackageId>Juloc.WebKit.Web</PackageId>
     <IsPackable>true</IsPackable>
-    <Version>0.1.0</Version>
     <Description>Small ASP.NET Core integration conventions for WebKit applications.</Description>
   </PropertyGroup>
   <ItemGroup>

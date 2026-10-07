@@ -11,17 +11,24 @@ cd samples/Contoso.Portal
 dotnet run
 ```
 
-Für einzelne Bausteine:
+Die vollständige Sammlung:
 
 ```powershell
 dotnet new install .\templates\webkit-feature
-dotnet new webkit-feature -n BillingFeature
-
 dotnet new install .\templates\webkit-page
-dotnet new webkit-page -n Reports
-
+dotnet new install .\templates\webkit-list-page
+dotnet new install .\templates\webkit-detail-page
+dotnet new install .\templates\webkit-form-page
+dotnet new install .\templates\webkit-settings-page
 dotnet new install .\templates\webkit-admin-page
-dotnet new webkit-admin-page -n Settings
+
+dotnet new webkit-feature -n Billing -o Features/Billing
+dotnet new webkit-page -n Reports -o Pages/Reports
+dotnet new webkit-list-page -n Providers -o Pages/Providers
+dotnet new webkit-detail-page -n ProviderDetails -o Pages/ProviderDetails
+dotnet new webkit-form-page -n ProviderEdit -o Pages/ProviderEdit
+dotnet new webkit-settings-page -n Preferences -o Pages/Preferences
+dotnet new webkit-admin-page -n Settings -o Pages/Settings
 ```
 
-Die Vorlagen halten die Namen absichtlich generisch. Nach der Generierung gehören Feature-Code und PageModels in die Zielanwendung; die gemeinsamen Contracts bleiben in WebKit.Core/WebKit.Web.
+`webkit-app` referenziert die vier WebKit-Pakete. Für einen lokalen Dogfood-Lauf werden sie zuerst nach `artifacts/` gepackt und beim Restore als lokaler Feed verwendet; genau das prüft `scripts/validate.ps1`. Nach der Generierung gehören Feature-Code und PageModels in die Zielanwendung; gemeinsame Contracts bleiben in WebKit.Core/WebKit.Web.

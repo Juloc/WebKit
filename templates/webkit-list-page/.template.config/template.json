@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "WebKit",
+  "classifications": ["Web", "Razor Pages", "List"],
+  "identity": "WebKit.Templates.ListPage",
+  "name": "WebKit list page",
+  "shortName": "webkit-list-page",
+  "sourceName": "__Page__"
+}

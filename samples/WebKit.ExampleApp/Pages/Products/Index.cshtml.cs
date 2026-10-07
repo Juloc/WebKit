@@ -14,7 +14,13 @@ public sealed class ProductsIndexModel(IProductCatalog catalog) : PageModel
 
     public PageResult<Product> Results { get; private set; } = new([], 1, 20, 0);
 
-    public PaginationModel Pagination => new(Results.Page, Results.PageCount, "/Products", Search);
+    public PaginationModel Pagination => new(
+        Results.Page,
+        Results.PageCount,
+        "/Products",
+        Request.Query
+            .Where(parameter => !string.Equals(parameter.Key, "page", StringComparison.OrdinalIgnoreCase))
+            .ToDictionary(parameter => parameter.Key, parameter => (string?)parameter.Value.ToString(), StringComparer.OrdinalIgnoreCase));
 
     public void OnGet(string? q)
     {

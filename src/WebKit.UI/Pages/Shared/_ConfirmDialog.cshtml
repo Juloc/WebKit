@@ -1,12 +1,13 @@
 @model ConfirmDialogModel
 
-<dialog id="@Model.Id" class="wk-dialog" aria-labelledby="@Model.Id-title">
+<dialog id="@Model.DialogId" class="wk-dialog" aria-labelledby="@Model.TitleId">
     <div class="wk-dialog-body">
-        <h2 id="@Model.Id-title">@Model.Title</h2>
+        <h2 id="@Model.TitleId">@Model.Title</h2>
         <p>@Model.Description</p>
-        <div class="wk-actions">
-            <button class="wk-button" type="button" data-dialog-close="@Model.Id">Cancel</button>
+        <form class="wk-actions" method="post" action="@Model.ActionUrl">
+            @Html.AntiForgeryToken()
+            <button class="wk-button" type="button" data-dialog-close="@Model.DialogId">@Model.CancelText</button>
             <button class="wk-button wk-button-danger" type="submit">@Model.ConfirmText</button>
-        </div>
+        </form>
     </div>
 </dialog>

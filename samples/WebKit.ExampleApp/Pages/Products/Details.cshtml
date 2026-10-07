@@ -10,20 +10,18 @@
 }
 else
 {
+    <partial name="_Breadcrumbs" model='new BreadcrumbsModel([new BreadcrumbItemModel("Home", "/"), new BreadcrumbItemModel("Catalog", "/Products"), new BreadcrumbItemModel(Model.Product.Name)])' />
     <partial name="_PageHeader" model='new PageHeaderModel(Model.Product.Name, "Detail page using the same feature boundary as the list.")' />
     <div class="wk-card">
-        <dl class="detail-list">
-            <dt>Category</dt><dd>@Model.Product.Category</dd>
-            <dt>Status</dt><dd><partial name="_StatusBadge" model='new StatusBadgeModel(Model.Product.Status, Model.Product.Status == "Active" ? "success" : "warning")' /></dd>
-        </dl>
+        <partial name="_FactsList" model='new FactsListModel([( "Category", Model.Product.Category ), ( "Status", Model.Product.Status )])' />
+        <div class="wk-actions" style="margin-top: var(--wk-space-5);">
+            <partial name="_StatusBadge" model='new StatusBadgeModel(Model.Product.Status, Model.Product.Status == "Active" ? StatusTone.Success : StatusTone.Warning)' />
+        </div>
         <div class="wk-actions" style="margin-top: var(--wk-space-5);">
             <a class="wk-button wk-button-primary" href="/Products/Edit/@Model.Product.Id">Edit item</a>
             <a class="wk-button" href="/Products">Back to catalog</a>
             <button class="wk-button wk-button-danger" type="button" data-dialog-open="delete-dialog">Delete</button>
         </div>
     </div>
-    <form method="post" asp-page-handler="Delete">
-        <input type="hidden" name="id" value="@Model.Product.Id" />
-        <partial name="_ConfirmDialog" model='new ConfirmDialogModel("delete-dialog", "Delete item?", "This is a native confirmation dialog pattern. The demo leaves data untouched.", "Delete")' />
-    </form>
+    <partial name="_ConfirmDialog" model='new ConfirmDialogModel("delete-dialog", "Delete item?", "This is a native confirmation dialog pattern. The demo leaves data untouched.", $"/Products/Details/{Model.Product.Id}?handler=Delete&id={Model.Product.Id}", "Delete")' />
 }

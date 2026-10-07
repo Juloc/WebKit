@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <AssemblyName>WebKit.Design</AssemblyName>
     <RootNamespace>WebKit.Design</RootNamespace>
-    <PackageId>WebKit.Design</PackageId>
-    <Version>0.1.0</Version>
+    <PackageId>Juloc.WebKit.Design</PackageId>
     <Description>Framework-neutral semantic design tokens for WebKit applications.</Description>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 </Project>

@@ -2,8 +2,7 @@
   <PropertyGroup>
     <AssemblyName>WebKit.Core</AssemblyName>
     <RootNamespace>WebKit.Core</RootNamespace>
-    <PackageId>WebKit.Core</PackageId>
-    <Version>0.1.0</Version>
+    <PackageId>Juloc.WebKit.Core</PackageId>
     <Description>Small UI-independent primitives for WebKit applications.</Description>
   </PropertyGroup>
 </Project>

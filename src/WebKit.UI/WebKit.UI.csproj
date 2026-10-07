@@ -2,12 +2,12 @@
   <PropertyGroup>
     <AssemblyName>WebKit.UI</AssemblyName>
     <RootNamespace>WebKit.UI</RootNamespace>
-    <PackageId>WebKit.UI</PackageId>
-    <Version>0.1.0</Version>
+    <PackageId>Juloc.WebKit.UI</PackageId>
     <Description>Small accessible Razor partials for WebKit applications.</Description>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebKit.Design\WebKit.Design.csproj" />
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 </Project>

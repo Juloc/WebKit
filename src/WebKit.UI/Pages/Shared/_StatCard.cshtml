@@ -1,0 +1,10 @@
+@model StatCardModel
+
+<section class="wk-card wk-stat-card" aria-label="@Model.Label">
+    <span class="wk-muted">@Model.Label</span>
+    <strong>@Model.Value</strong>
+    @if (!string.IsNullOrWhiteSpace(Model.Description))
+    {
+        <span class="wk-muted">@Model.Description</span>
+    }
+</section>

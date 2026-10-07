@@ -2,15 +2,10 @@
   <PropertyGroup>
     <AssemblyName>WebKit.ExampleApp</AssemblyName>
     <RootNamespace>WebKit.ExampleApp</RootNamespace>
-    <Version>0.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\WebKit.Web\WebKit.Web.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <RazorGenerate Include="..\..\src\WebKit.UI\Pages\Shared\**\*.cshtml" Link="Pages\Shared\%(RecursiveDir)%(Filename)%(Extension)" />
-    <Compile Include="..\..\src\WebKit.UI\UIModels.cs" Link="UIModels.cs" />
-    <Content Include="..\..\src\WebKit.UI\wwwroot\**\*" Link="wwwroot\_content\WebKit.UI\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\..\src\WebKit.Design\wwwroot\**\*" Link="wwwroot\_content\WebKit.Design\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <ProjectReference Include="..\..\src\WebKit.UI\WebKit.UI.csproj" />
+    <ProjectReference Include="..\..\src\WebKit.Design\WebKit.Design.csproj" />
   </ItemGroup>
 </Project>

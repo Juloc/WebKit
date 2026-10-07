@@ -1,0 +1,13 @@
+@page "{id:guid}"
+@using WebKit.UI
+@model __Page__.__Page__Model
+@{
+    BreadcrumbsModel breadcrumbs = new([new BreadcrumbItemModel("Home", "/"), new BreadcrumbItemModel("__Page__")]);
+    PageHeaderModel header = new("__Page__", "Replace this description with the detail context.");
+    FactsListModel facts = new([( "Identifier", Model.Id.ToString() ), ( "Status", "Replace me" )]);
+}
+<partial name="_Breadcrumbs" model="breadcrumbs" />
+<partial name="_PageHeader" model="header" />
+<section class="wk-card">
+    <partial name="_FactsList" model="facts" />
+</section>

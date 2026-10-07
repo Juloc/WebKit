@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "WebKit",
+  "classifications": ["Web", "Razor Pages", "Form"],
+  "identity": "WebKit.Templates.FormPage",
+  "name": "WebKit form page",
+  "shortName": "webkit-form-page",
+  "sourceName": "__Page__"
+}

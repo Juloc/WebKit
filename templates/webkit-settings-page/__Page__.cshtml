@@ -1,0 +1,15 @@
+@page
+@using WebKit.UI
+@model __Page__.__Page__Model
+@{
+    PageHeaderModel header = new("__Page__ settings", "Group related controls into explicit, explainable sections.");
+}
+<partial name="_PageHeader" model="header" />
+<form class="wk-form" method="post">
+    <section class="wk-card wk-form-section" aria-labelledby="settings-section-title">
+        <h2 id="settings-section-title">General</h2>
+        <p class="wk-muted">Add settings controls here with labels and hints.</p>
+        <!-- Add feature settings here. -->
+    </section>
+    <div class="wk-actions"><button class="wk-button wk-button-primary" type="submit">Save settings</button></div>
+</form>

@@ -5,5 +5,5 @@
   "identity": "WebKit.Templates.AdminPage",
   "name": "WebKit authorized admin Razor page",
   "shortName": "webkit-admin-page",
-  "sourceName": "WebKitAdminPage"
+  "sourceName": "__AdminPage__"
 }

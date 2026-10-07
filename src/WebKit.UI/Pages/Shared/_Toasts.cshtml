@@ -2,10 +2,10 @@
 
 @if (Model.Messages.Count > 0)
 {
-    <div class="wk-toast-stack" aria-live="polite">
-        @foreach (string message in Model.Messages)
+    <div class="wk-toast-stack" aria-label="Notifications">
+        @foreach (ToastMessageModel message in Model.Messages)
         {
-            <div class="wk-toast" role="status">@message</div>
+            <div class="wk-toast wk-toast-@message.Kind.ToString().ToLowerInvariant()" role="@(message.IsAssertive ? "alert" : "status")" aria-live="@(message.IsAssertive ? "assertive" : "polite")">@message.Text</div>
         }
     </div>
 }

@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
-using WebKit.Web.Configuration;
 
 namespace WebKit.Web.Identity;
 
@@ -9,13 +7,11 @@ public sealed class CapabilityRequirement(string capability) : IAuthorizationReq
     public string Capability { get; } = capability;
 }
 
-public sealed class CapabilityAuthorizationHandler(IOptions<WebKitWebOptions> options) : AuthorizationHandler<CapabilityRequirement>
+public sealed class CapabilityAuthorizationHandler(ICapabilityEvaluator evaluator) : AuthorizationHandler<CapabilityRequirement>
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, CapabilityRequirement requirement)
     {
-        bool hasCapability = context.User.Claims.Any(claim => claim.Type == options.Value.CapabilityClaimType && string.Equals(claim.Value, requirement.Capability, StringComparison.OrdinalIgnoreCase));
-        bool isAdmin = context.User.IsInRole("admin");
-        if (hasCapability || isAdmin)
+        if (evaluator.HasCapability(context.User, requirement.Capability))
         {
             context.Succeed(requirement);
         }
