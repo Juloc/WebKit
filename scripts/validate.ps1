@@ -91,6 +91,21 @@ try {
         }
     }
 
+    $designCssPath = Join-Path $repositoryRoot 'src/WebKit.Design/wwwroot/css/webkit-design.css'
+    $uiCssPath = Join-Path $repositoryRoot 'src/WebKit.UI/wwwroot/css/webkit-ui.css'
+    $uiJsPath = Join-Path $repositoryRoot 'src/WebKit.UI/wwwroot/js/webkit-ui.js'
+    $designCss = [System.IO.File]::ReadAllText($designCssPath)
+    $uiCss = [System.IO.File]::ReadAllText($uiCssPath)
+    $uiJs = [System.IO.File]::ReadAllText($uiJsPath)
+    $dialogPartial = [System.IO.File]::ReadAllText((Join-Path $repositoryRoot 'src/WebKit.UI/Pages/Shared/_ConfirmDialog.cshtml'))
+    $toastPartial = [System.IO.File]::ReadAllText((Join-Path $repositoryRoot 'src/WebKit.UI/Pages/Shared/_Toasts.cshtml'))
+    Assert-True ($designCss.Contains(':focus-visible') -and $designCss.Contains('prefers-reduced-motion') -and $designCss.Contains('@media (max-width')) 'Design accessibility/responsive contract audit failed.'
+    Assert-True ($dialogPartial.Contains('AntiForgeryToken') -and $dialogPartial.Contains('aria-labelledby')) 'Dialog security/accessibility contract audit failed.'
+    Assert-True ($toastPartial.Contains('aria-live') -and $toastPartial.Contains('role=')) 'Toast live-region contract audit failed.'
+    Assert-True ($designCss.Contains('.wk-button') -and $designCss.Contains('.wk-form') -and $designCss.Contains('.wk-dialog') -and $designCss.Contains('.wk-toast') -and $uiCss.Contains('.wk-brand')) 'Shared UI primitive contract audit failed.'
+    Assert-True ($uiJs.Length -lt 20000 -and -not $uiJs.Contains('fetch(')) 'Global UI JavaScript performance contract audit failed.'
+    Write-Output 'Accessibility/responsive/performance contract audit passed.'
+
     $templateDirectories = @(
         'templates/webkit-app',
         'templates/webkit-feature',
@@ -109,6 +124,13 @@ try {
     Invoke-Dotnet @('new', 'webkit-app', '-n', 'ExternalApp', '-o', $externalApp, '--force')
     $externalProject = Join-Path $externalApp 'ExternalApp.csproj'
     Invoke-Dotnet @('restore', $externalProject, '--source', $artifactPath, '--ignore-failed-sources', '-p:RestoreDisableParallel=true', '-m:1')
+    $externalProjectText = [System.IO.File]::ReadAllText($externalProject)
+    Assert-True (-not $externalProjectText.Contains('<ProjectReference')) 'External app contains an unexpected source project reference.'
+    foreach ($packageId in @('Juloc.WebKit.Web', 'Juloc.WebKit.UI', 'Juloc.WebKit.Design')) {
+        $packageReference = 'PackageReference Include="' + $packageId + '"'
+        Assert-True ($externalProjectText.Contains($packageReference)) "External app does not reference package $packageId."
+    }
+    Invoke-Dotnet @('build', $externalProject, '--no-restore', '-m:1')
 
     foreach ($templateInvocation in @(
         @('webkit-feature', '-n', 'Billing', '-o', (Join-Path $externalApp 'Features/Billing'), '--force'),
@@ -121,6 +143,7 @@ try {
     )) {
         $arguments = @('new') + $templateInvocation
         Invoke-Dotnet $arguments
+        Invoke-Dotnet @('build', $externalProject, '--no-restore', '-m:1')
     }
 
     $expectedFiles = @(
@@ -135,8 +158,6 @@ try {
     foreach ($relativePath in $expectedFiles) {
         Assert-True (Test-Path -LiteralPath (Join-Path $externalApp $relativePath)) "Template did not generate $relativePath."
     }
-
-    Invoke-Dotnet @('build', $externalProject, '--no-restore', '-m:1')
 
     $url = 'http://127.0.0.1:5137'
     $env:ASPNETCORE_ENVIRONMENT = 'Development'

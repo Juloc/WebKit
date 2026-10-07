@@ -57,4 +57,4 @@ pwsh -File .\scripts\validate.ps1
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\validate.ps1
 ```
 
-Der Pfad läuft in GitHub Actions; die vier `.nupkg`-Dateien werden als CI-Artefakte hochgeladen. Konventionen, Design-System, Komponenten und Testansatz stehen in [CONVENTIONS.md](CONVENTIONS.md), [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md), [COMPONENTS.md](COMPONENTS.md) und [TESTING.md](TESTING.md).
+Der Pfad läuft in GitHub Actions; die vier `.nupkg`-Dateien werden als CI-Artefakte hochgeladen. Konventionen, Design-System, Komponenten, Testansatz und Quality Audit stehen in [CONVENTIONS.md](CONVENTIONS.md), [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md), [COMPONENTS.md](COMPONENTS.md), [TESTING.md](TESTING.md) und [QUALITY_AUDIT.md](QUALITY_AUDIT.md).

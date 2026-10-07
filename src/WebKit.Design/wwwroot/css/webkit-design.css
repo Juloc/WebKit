@@ -2,18 +2,18 @@
   color-scheme: light dark;
   --wk-font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --wk-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  --wk-surface: #f5f7fb;
-  --wk-surface-raised: #ffffff;
-  --wk-surface-subtle: #edf1f7;
-  --wk-text: #182230;
-  --wk-text-muted: #5d6b7d;
-  --wk-border: #d7dee9;
-  --wk-accent: #2563eb;
-  --wk-accent-contrast: #ffffff;
-  --wk-success: #18794e;
-  --wk-warning: #9a6700;
-  --wk-danger: #bd1f36;
-  --wk-focus: #2563eb;
+  --wk-color-surface: #f5f7fb;
+  --wk-color-surface-raised: #ffffff;
+  --wk-color-surface-subtle: #edf1f7;
+  --wk-color-text: #182230;
+  --wk-color-text-muted: #5d6b7d;
+  --wk-color-border: #d7dee9;
+  --wk-color-accent: #2563eb;
+  --wk-color-accent-contrast: #ffffff;
+  --wk-color-success: #18794e;
+  --wk-color-warning: #9a6700;
+  --wk-color-danger: #bd1f36;
+  --wk-color-focus: #2563eb;
   --wk-radius-sm: 0.35rem;
   --wk-radius-md: 0.65rem;
   --wk-radius-lg: 1rem;
@@ -27,19 +27,19 @@
   --wk-space-6: 2rem;
   --wk-space-7: 3rem;
   --wk-content-max: 74rem;
-  /* Stable semantic aliases; applications should override these names. */
-  --wk-color-surface: var(--wk-surface);
-  --wk-color-surface-raised: var(--wk-surface-raised);
-  --wk-color-surface-subtle: var(--wk-surface-subtle);
-  --wk-color-text: var(--wk-text);
-  --wk-color-text-muted: var(--wk-text-muted);
-  --wk-color-border: var(--wk-border);
-  --wk-color-accent: var(--wk-accent);
-  --wk-color-accent-contrast: var(--wk-accent-contrast);
-  --wk-color-success: var(--wk-success);
-  --wk-color-warning: var(--wk-warning);
-  --wk-color-danger: var(--wk-danger);
-  --wk-color-focus: var(--wk-focus);
+  /* Legacy aliases remain available for existing consumer CSS. */
+  --wk-surface: var(--wk-color-surface);
+  --wk-surface-raised: var(--wk-color-surface-raised);
+  --wk-surface-subtle: var(--wk-color-surface-subtle);
+  --wk-text: var(--wk-color-text);
+  --wk-text-muted: var(--wk-color-text-muted);
+  --wk-border: var(--wk-color-border);
+  --wk-accent: var(--wk-color-accent);
+  --wk-accent-contrast: var(--wk-color-accent-contrast);
+  --wk-success: var(--wk-color-success);
+  --wk-warning: var(--wk-color-warning);
+  --wk-danger: var(--wk-color-danger);
+  --wk-focus: var(--wk-color-focus);
   --wk-control-height: 2.5rem;
 }
 
@@ -48,74 +48,74 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --wk-surface: #10151d;
-    --wk-surface-raised: #18212d;
-    --wk-surface-subtle: #202b39;
-    --wk-text: #edf2f7;
-    --wk-text-muted: #aebacc;
-    --wk-border: #334155;
-    --wk-accent: #7db0ff;
-    --wk-accent-contrast: #07111f;
-    --wk-success: #69d39e;
-    --wk-warning: #f2c14e;
-    --wk-danger: #ff8da0;
-    --wk-focus: #9bc2ff;
+    --wk-color-surface: #10151d;
+    --wk-color-surface-raised: #18212d;
+    --wk-color-surface-subtle: #202b39;
+    --wk-color-text: #edf2f7;
+    --wk-color-text-muted: #aebacc;
+    --wk-color-border: #334155;
+    --wk-color-accent: #7db0ff;
+    --wk-color-accent-contrast: #07111f;
+    --wk-color-success: #69d39e;
+    --wk-color-warning: #f2c14e;
+    --wk-color-danger: #ff8da0;
+    --wk-color-focus: #9bc2ff;
     --wk-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.28);
     --wk-shadow-md: 0 16px 36px rgb(0 0 0 / 0.38);
   }
 }
 
 [data-theme="dark"] {
-  --wk-surface: #10151d;
-  --wk-surface-raised: #18212d;
-  --wk-surface-subtle: #202b39;
-  --wk-text: #edf2f7;
-  --wk-text-muted: #aebacc;
-  --wk-border: #334155;
-  --wk-accent: #7db0ff;
-  --wk-accent-contrast: #07111f;
-  --wk-success: #69d39e;
-  --wk-warning: #f2c14e;
-  --wk-danger: #ff8da0;
-  --wk-focus: #9bc2ff;
+  --wk-color-surface: #10151d;
+  --wk-color-surface-raised: #18212d;
+  --wk-color-surface-subtle: #202b39;
+  --wk-color-text: #edf2f7;
+  --wk-color-text-muted: #aebacc;
+  --wk-color-border: #334155;
+  --wk-color-accent: #7db0ff;
+  --wk-color-accent-contrast: #07111f;
+  --wk-color-success: #69d39e;
+  --wk-color-warning: #f2c14e;
+  --wk-color-danger: #ff8da0;
+  --wk-color-focus: #9bc2ff;
   --wk-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.28);
   --wk-shadow-md: 0 16px 36px rgb(0 0 0 / 0.38);
 }
 
 [data-theme-preset="media"] {
-  --wk-surface: #111827;
-  --wk-surface-raised: #1f2937;
-  --wk-surface-subtle: #273449;
-  --wk-text: #f8fafc;
-  --wk-text-muted: #b9c5d6;
-  --wk-border: #3a4a61;
-  --wk-accent: #f97316;
-  --wk-accent-contrast: #1c0b02;
-  --wk-focus: #fdba74;
+  --wk-color-surface: #111827;
+  --wk-color-surface-raised: #1f2937;
+  --wk-color-surface-subtle: #273449;
+  --wk-color-text: #f8fafc;
+  --wk-color-text-muted: #b9c5d6;
+  --wk-color-border: #3a4a61;
+  --wk-color-accent: #f97316;
+  --wk-color-accent-contrast: #1c0b02;
+  --wk-color-focus: #fdba74;
 }
 
 [data-theme-preset="finance"] {
-  --wk-surface: #f4f8f6;
-  --wk-surface-raised: #ffffff;
-  --wk-surface-subtle: #e7f0eb;
-  --wk-text: #14251d;
-  --wk-text-muted: #4f6c5d;
-  --wk-border: #bfd3c6;
-  --wk-accent: #087f5b;
-  --wk-accent-contrast: #ffffff;
-  --wk-focus: #0b9f70;
+  --wk-color-surface: #f4f8f6;
+  --wk-color-surface-raised: #ffffff;
+  --wk-color-surface-subtle: #e7f0eb;
+  --wk-color-text: #14251d;
+  --wk-color-text-muted: #4f6c5d;
+  --wk-color-border: #bfd3c6;
+  --wk-color-accent: #087f5b;
+  --wk-color-accent-contrast: #ffffff;
+  --wk-color-focus: #0b9f70;
 }
 
 [data-theme-preset="document"] {
-  --wk-surface: #f8f7f3;
-  --wk-surface-raised: #fffefa;
-  --wk-surface-subtle: #eeece4;
-  --wk-text: #242424;
-  --wk-text-muted: #68645b;
-  --wk-border: #d8d3c7;
-  --wk-accent: #5f4b32;
-  --wk-accent-contrast: #fffefa;
-  --wk-focus: #986f2b;
+  --wk-color-surface: #f8f7f3;
+  --wk-color-surface-raised: #fffefa;
+  --wk-color-surface-subtle: #eeece4;
+  --wk-color-text: #242424;
+  --wk-color-text-muted: #68645b;
+  --wk-color-border: #d8d3c7;
+  --wk-color-accent: #5f4b32;
+  --wk-color-accent-contrast: #fffefa;
+  --wk-color-focus: #986f2b;
 }
 
 * { box-sizing: border-box; }

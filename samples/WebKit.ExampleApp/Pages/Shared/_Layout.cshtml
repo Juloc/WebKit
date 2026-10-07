@@ -13,6 +13,20 @@
             _ => ToastKind.Information
         },
         message.Kind == FlashMessageKind.Error)).ToArray();
+    List<NavigationItemModel> navigationItems =
+    [
+        new("Home", "/", Context.Request.Path == "/"),
+        new("Catalog", "/Products", Context.Request.Path.StartsWithSegments("/Products"))
+    ];
+    if (UserContext.IsAuthenticated)
+    {
+        navigationItems.Add(new("Settings", "/Settings", Context.Request.Path.StartsWithSegments("/Settings")));
+    }
+    if (UserContext.HasCapability("admin"))
+    {
+        navigationItems.Add(new("Admin", "/Admin", Context.Request.Path.StartsWithSegments("/Admin")));
+    }
+    NavigationModel navigation = new([new NavigationGroupModel(null, navigationItems)]);
 }
 <!doctype html>
 <html lang="en">
@@ -29,18 +43,7 @@
     <div class="wk-shell">
         <aside class="wk-sidebar">
             <a class="wk-brand" href="/"><span class="wk-brand-mark" aria-hidden="true">W</span> WebKit</a>
-            <nav class="wk-nav" aria-label="Primary navigation">
-                <a href="/" aria-current="@(Context.Request.Path == "/" ? "page" : null)">Home</a>
-                <a href="/Products" aria-current="@(Context.Request.Path.StartsWithSegments("/Products") ? "page" : null)">Catalog</a>
-                @if (UserContext.IsAuthenticated)
-                {
-                    <a href="/Settings" aria-current="@(Context.Request.Path.StartsWithSegments("/Settings") ? "page" : null)">Settings</a>
-                }
-                @if (UserContext.HasCapability("admin"))
-                {
-                    <a href="/Admin">Admin</a>
-                }
-            </nav>
+            <partial name="_Navigation" model="navigation" />
         </aside>
         <div class="wk-main">
             <header class="wk-header">
