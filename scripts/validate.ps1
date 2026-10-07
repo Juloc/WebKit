@@ -201,7 +201,7 @@ try {
     $sampleProject = Join-Path $repositoryRoot 'samples/WebKit.ExampleApp/WebKit.ExampleApp.csproj'
     $sampleStdout = Join-Path $temporaryRoot 'sample.stdout.log'
     $sampleStderr = Join-Path $temporaryRoot 'sample.stderr.log'
-    $sampleProcess = Start-Process -FilePath 'dotnet' -ArgumentList @('run', '--project', $sampleProject, '--no-build', '--no-restore', '--urls', $sampleUrl) -WorkingDirectory $repositoryRoot -RedirectStandardOutput $sampleStdout -RedirectStandardError $sampleStderr -PassThru
+    $sampleProcess = Start-Process -FilePath 'dotnet' -ArgumentList @('run', '--project', $sampleProject, '-c', 'Release', '--no-build', '--no-restore', '--urls', $sampleUrl) -WorkingDirectory $repositoryRoot -RedirectStandardOutput $sampleStdout -RedirectStandardError $sampleStderr -PassThru
     try {
         $sampleReady = $false
         for ($attempt = 0; $attempt -lt 40; $attempt++) {
